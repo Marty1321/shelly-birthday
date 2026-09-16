@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Per Shelly 💙</title>
 
     <style>
@@ -14,22 +15,139 @@
             margin: 0;
             width: 100%;
             height: 100%;
+            background: black;
             overflow: hidden;
-            background: #000;
+        }
+
+        #screen {
+            width: 100vw;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #stage {
+            position: relative;
+            width: min(100vw, 177.78vh);
+            height: min(100vh, 56.25vw);
         }
 
         #slide {
             width: 100%;
             height: 100%;
-            object-fit: contain;
             display: block;
+        }
+
+        .button {
+            position: absolute;
+            border: none;
+            background: transparent;
+            cursor: pointer;
         }
     </style>
 </head>
 
 <body>
 
-    <img id="slide" src="1.png" alt="">
+<div id="screen">
+    <div id="stage">
+        <img id="slide" src="1.png" alt="">
+    </div>
+</div>
+
+<script>
+
+const slide = document.getElementById("slide");
+const stage = document.getElementById("stage");
+
+function showSlide(number) {
+    slide.src = number + ".png";
+    stage.querySelectorAll(".button").forEach(button => button.remove());
+    addButtons(number);
+}
+
+function button(x, y, width, height, target) {
+    const b = document.createElement("button");
+
+    b.className = "button";
+
+    b.style.left = x + "%";
+    b.style.top = y + "%";
+    b.style.width = width + "%";
+    b.style.height = height + "%";
+
+    b.onclick = function() {
+        showSlide(target);
+    };
+
+    stage.appendChild(b);
+}
+
+function addButtons(number) {
+
+    /* SLIDE 1
+       Clicca per continuare → slide 2
+    */
+    if (number === 1) {
+        button(35, 55, 30, 20, 2);
+    }
+
+
+    /* SLIDE 2
+       SÌ → slide 7
+       NO → slide 3
+    */
+    if (number === 2) {
+        button(20, 65, 28, 20, 7);
+        button(52, 65, 28, 20, 3);
+    }
+
+
+    /* SLIDE 3
+       SÌ → slide 7
+       NO → slide 4
+    */
+    if (number === 3) {
+        button(20, 65, 28, 20, 7);
+        button(52, 65, 28, 20, 4);
+    }
+
+
+    /* SLIDE 4
+       SÌ → slide 7
+       NO → slide 5
+    */
+    if (number === 4) {
+        button(20, 65, 28, 20, 7);
+        button(52, 65, 28, 20, 5);
+    }
+
+
+    /* SLIDE 5
+       SÌ → slide 7
+       NO → slide 6
+    */
+    if (number === 5) {
+        button(20, 65, 28, 20, 7);
+        button(52, 65, 28, 20, 6);
+    }
+
+
+    /* SLIDE 6
+       Rimane solo SÌ → slide 7
+    */
+    if (number === 6) {
+        button(35, 65, 30, 20, 7);
+    }
+
+}
+
+
+/* Avvia dalla prima slide */
+addButtons(1);
+
+</script>
 
 </body>
 </html>
