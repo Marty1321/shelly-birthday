@@ -63,7 +63,9 @@ const stage = document.getElementById("stage");
 
 function showSlide(number) {
     slide.src = number + ".png";
+
     stage.querySelectorAll(".button").forEach(button => button.remove());
+
     addButtons(number);
 }
 
@@ -87,10 +89,11 @@ function button(x, y, width, height, target) {
 function addButtons(number) {
 
     /* SLIDE 1
-       Clicca per continuare → slide 2
+       Grande zona invisibile centrale
+       → slide 2
     */
     if (number === 1) {
-        button(35, 55, 30, 20, 2);
+        button(15, 35, 70, 45, 2);
     }
 
 
@@ -99,8 +102,8 @@ function addButtons(number) {
        NO → slide 3
     */
     if (number === 2) {
-        button(20, 65, 28, 20, 7);
-        button(52, 65, 28, 20, 3);
+        button(15, 55, 35, 35, 7);
+        button(50, 55, 35, 35, 3);
     }
 
 
@@ -109,8 +112,8 @@ function addButtons(number) {
        NO → slide 4
     */
     if (number === 3) {
-        button(20, 65, 28, 20, 7);
-        button(52, 65, 28, 20, 4);
+        button(15, 55, 35, 35, 7);
+        button(50, 55, 35, 35, 4);
     }
 
 
@@ -119,8 +122,8 @@ function addButtons(number) {
        NO → slide 5
     */
     if (number === 4) {
-        button(20, 65, 28, 20, 7);
-        button(52, 65, 28, 20, 5);
+        button(15, 55, 35, 35, 7);
+        button(50, 55, 35, 35, 5);
     }
 
 
@@ -129,22 +132,22 @@ function addButtons(number) {
        NO → slide 6
     */
     if (number === 5) {
-        button(20, 65, 28, 20, 7);
-        button(52, 65, 28, 20, 6);
+        button(15, 55, 35, 35, 7);
+        button(50, 55, 35, 35, 6);
     }
 
 
     /* SLIDE 6
-       Rimane solo SÌ → slide 7
+       SOLO SÌ → slide 7
     */
     if (number === 6) {
-        button(35, 65, 30, 20, 7);
+        button(25, 55, 50, 35, 7);
     }
 
 }
 
 
-/* Avvia dalla prima slide */
+/* Inizia dalla slide 1 */
 addButtons(1);
 
 </script>
